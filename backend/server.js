@@ -8,17 +8,31 @@ dotenv.config();
 const app = express();
 
 // Middleware
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://fc-dusky-omega.vercel.app",
-// ];
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     credentials: true,
-//   })
-// );
-app.use(cors());
+// Allow the frontend (including Vercel deployments) to access the API.
+// We reflect allowed origins back to the client so credentialed requests work.
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., mobile apps, curl)
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = [
+        'http://localhost:5173',
+      ];
+
+      // Allow all Vercel preview/production domains
+      const isVercel = origin.endsWith('.vercel.app') || origin.endsWith('.vercel.sh');
+
+      if (allowedOrigins.includes(origin) || isVercel) {
+        return callback(null, true);
+      }
+
+      callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Connect to Database
