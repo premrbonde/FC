@@ -32,13 +32,13 @@ const ProductDetail = () => {
   const fetchProductDetails = async () => {
     setLoading(true);
     try {
-      const res = await api.get(`/products/${id}`);
+      const res = await api.get(`/api/products/${id}`);
       setProduct(res.data.data);
       setSelectedColor(res.data.data.colors[0] || '');
       setSelectedSize(res.data.data.sizes[0] || '');
 
       // Fetch recommended based on category
-      const recRes = await api.get(`/products/recommended/${res.data.data.category}`);
+      const recRes = await api.get(`/api/products/recommended/${res.data.data.category}`);
       setRecommended(recRes.data.data.filter(p => p._id !== id).slice(0, 10));
     } catch (error) {
       console.error('Error fetching product', error);

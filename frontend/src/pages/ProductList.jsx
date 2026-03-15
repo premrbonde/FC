@@ -40,7 +40,7 @@ const ProductList = () => {
       if (minPrice) query += `&minPrice=${minPrice}`;
       if (maxPrice) query += `&maxPrice=${maxPrice}`;
 
-      const res = await api.get(`/products${query}`);
+      const res = await api.get(`/api/products${query}`);
 
       if (reset) {
         setProducts(res.data.data);
