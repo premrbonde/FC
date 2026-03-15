@@ -14,6 +14,7 @@ app.use(
       'http://localhost:5173',
       'https://fc-menswear.vercel.app',
       'https://fc-menswear-ncx63leq0-prembondes-projects.vercel.app',
+      "https://fc-dusky-omega.vercel.app"
     ],
     credentials: true,
   })
