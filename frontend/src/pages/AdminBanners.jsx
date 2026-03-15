@@ -16,7 +16,7 @@ const AdminBanners = () => {
 
   const fetchBanners = async () => {
     try {
-      const res = await api.get('/admin/banners');
+      const res = await api.get('/api/admin/banners');
       setBanners(res.data.data);
     } catch (error) {
       console.error('Error fetching banners', error);
@@ -41,13 +41,13 @@ const AdminBanners = () => {
       const uploadData = new FormData();
       uploadData.append('images', imageFile);
 
-      const uploadRes = await api.post('/upload', uploadData, {
+      const uploadRes = await api.post('/api/upload', uploadData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
       const imageUrl = uploadRes.data.data[0];
 
-      await api.post('/admin/banners', {
+      await api.post('/api/admin/banners', {
         ...formData,
         imageUrl
       });
@@ -67,7 +67,7 @@ const AdminBanners = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this banner?')) return;
     try {
-      await api.delete(`/admin/banners/${id}`);
+      await api.delete(`/api/admin/banners/${id}`);
       fetchBanners();
     } catch (error) {
       alert('Failed to delete banner');

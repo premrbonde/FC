@@ -13,7 +13,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await api.get('/public/delivery-settings');
+        const res = await api.get('/api/public/delivery-settings');
         if (res.data.success) {
           setDeliverySettings(res.data.data);
         }

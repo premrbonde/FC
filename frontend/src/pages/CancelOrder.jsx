@@ -22,7 +22,7 @@ const CancelOrder = () => {
 
     setLoading(true);
     try {
-      await api.put(`/orders/${id}/cancel`, { cancellationReason: reason });
+      await api.put(`/api/orders/${id}/cancel`, { cancellationReason: reason });
       alert('Order cancelled successfully.');
       navigate(`/order-confirmation/${id}`);
     } catch (error) {

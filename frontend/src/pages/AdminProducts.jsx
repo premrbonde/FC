@@ -15,7 +15,7 @@ const AdminProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await api.get('/products?limit=100'); // Assuming admin needs to see all easily
+      const res = await api.get('/api/products?limit=100'); // Assuming admin needs to see all easily
       setProducts(res.data.data);
     } catch (error) {
       console.error('Error fetching products', error);
@@ -27,7 +27,7 @@ const AdminProducts = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     try {
-      await api.delete(`/admin/products/${id}`);
+      await api.delete(`/api/admin/products/${id}`);
       fetchProducts();
     } catch (error) {
       alert('Failed to delete product');

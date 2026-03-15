@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/cart');
+      const res = await api.get('/api/cart');
       setCart(res.data.data);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -31,7 +31,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = async (productId, quantity, color, size) => {
     try {
-      const res = await api.post('/cart', { productId, quantity, color, size });
+      const res = await api.post('/api/cart', { productId, quantity, color, size });
       setCart(res.data.data);
       return res.data;
     } catch (error) {
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = async (itemId) => {
     try {
-      const res = await api.delete(`/cart/${itemId}`);
+      const res = await api.delete(`/api/cart/${itemId}`);
       setCart(res.data.data);
     } catch (error) {
       console.error('Error removing from cart:', error);
@@ -55,7 +55,7 @@ export const CartProvider = ({ children }) => {
       if (quantity <= 0) {
         return removeFromCart(itemId);
       }
-      const res = await api.put(`/cart/${itemId}`, { quantity });
+      const res = await api.put(`/api/cart/${itemId}`, { quantity });
       setCart(res.data.data);
     } catch (error) {
       console.error('Error updating cart quantity:', error);

@@ -14,7 +14,7 @@ const AdminOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await api.get('/admin/orders');
+      const res = await api.get('/api/admin/orders');
       setOrders(res.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     } catch (error) {
       console.error('Error fetching orders', error);
@@ -26,7 +26,7 @@ const AdminOrders = () => {
   const handleConfirmOrder = async (id) => {
     if (!window.confirm('Confirm this order and send email to user?')) return;
     try {
-      await api.put(`/admin/orders/${id}/confirm`);
+      await api.put(`/api/admin/orders/${id}/confirm`);
       alert('Order confirmed and email sent.');
       fetchOrders();
     } catch (error) {
@@ -36,7 +36,7 @@ const AdminOrders = () => {
 
   const handleUpdateStatus = async (id, status) => {
     try {
-      await api.put(`/admin/orders/${id}/status`, { status });
+      await api.put(`/api/admin/orders/${id}/status`, { status });
       fetchOrders();
     } catch (error) {
       alert('Failed to update order status');

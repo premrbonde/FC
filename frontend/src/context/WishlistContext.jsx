@@ -20,7 +20,7 @@ export const WishlistProvider = ({ children }) => {
   const fetchWishlist = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/wishlist');
+      const res = await api.get('/api/wishlist');
       setWishlist(res.data.data);
     } catch (error) {
       console.error('Error fetching wishlist:', error);
@@ -31,7 +31,7 @@ export const WishlistProvider = ({ children }) => {
 
   const toggleWishlist = async (productId) => {
     try {
-      const res = await api.post('/wishlist/toggle', { productId });
+      const res = await api.post('/api/wishlist/toggle', { productId });
       setWishlist(res.data.data);
       return res.data;
     } catch (error) {

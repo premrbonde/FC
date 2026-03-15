@@ -16,10 +16,10 @@ const Home = () => {
     const fetchHomeData = async () => {
       try {
         const [bannersRes, newArrivalsRes, categoriesRes, contentBlocksRes] = await Promise.all([
-          api.get('/public/banners'),
-          api.get('/public/new-arrivals'),
-          api.get('/categories').catch(() => ({ data: { data: [] } })),
-          api.get('/content-blocks').catch(() => ({ data: { data: [] } })),
+          api.get('/api/public/banners'),
+          api.get('/api/public/new-arrivals'),
+          api.get('/api/categories').catch(() => ({ data: { data: [] } })),
+          api.get('/api/content-blocks').catch(() => ({ data: { data: [] } })),
         ]);
         setBanners(bannersRes.data.data);
         setNewArrivals(newArrivalsRes.data.data);

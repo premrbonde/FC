@@ -23,7 +23,7 @@ const Checkout = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await api.get('/public/delivery-settings');
+        const res = await api.get('/api/public/delivery-settings');
         if (res.data.success) {
           setDeliverySettings(res.data.data);
         }
@@ -61,7 +61,7 @@ const Checkout = () => {
         totalPrice: total
       };
 
-      const res = await api.post('/orders', orderData);
+      const res = await api.post('/api/orders', orderData);
       await fetchCart(); // Refresh cart to show empty
       navigate(`/order-confirmation/${res.data.data._id}`);
     } catch (error) {

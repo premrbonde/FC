@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         // Fetch full user data from the server (includes phone and any new fields)
         (async () => {
           try {
-            const res = await api.get('/auth/me');
+            const res = await api.get('/api/auth/me');
             setUser(res.data.data);
             localStorage.setItem('user', JSON.stringify(res.data.data));
           } catch (err) {

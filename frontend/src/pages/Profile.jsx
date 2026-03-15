@@ -38,8 +38,8 @@ const Profile = () => {
     try {
       setLoading(true);
       const [ordersRes, addressRes] = await Promise.all([
-        api.get('/orders/myorders'),
-        api.get('/addresses')
+        api.get('/api/orders/myorders'),
+        api.get('/api/addresses')
       ]);
       setOrders(ordersRes.data.data || []);
       setAddresses(addressRes.data.data || []);
@@ -64,7 +64,7 @@ const Profile = () => {
 
     try {
       setUpdateMsg('Updating...');
-      const res = await api.put('/auth/updatedetails', payload);
+      const res = await api.put('/api/auth/updatedetails', payload);
       const updatedUser = res.data.data;
 
       // Update context/local storage so reload keeps the new data

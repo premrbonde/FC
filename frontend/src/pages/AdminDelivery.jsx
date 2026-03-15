@@ -12,7 +12,7 @@ const AdminDelivery = () => {
 
   const fetchSettings = async () => {
     try {
-      const res = await api.get('/admin/delivery-settings');
+      const res = await api.get('/api/admin/delivery-settings');
       setSettings(res.data.data);
     } catch (error) {
       console.error('Error fetching settings', error);
@@ -29,7 +29,7 @@ const AdminDelivery = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      await api.put('/admin/delivery-settings', {
+      await api.put('/api/admin/delivery-settings', {
         baseCharge: Number(settings.baseCharge),
         freeDeliveryThreshold: Number(settings.freeDeliveryThreshold),
         chargePerKm: Number(settings.chargePerKm)

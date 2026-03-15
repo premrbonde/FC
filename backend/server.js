@@ -8,7 +8,16 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'https://fc-menswear.vercel.app',
+      'https://fc-menswear-ncx63leq0-prembondes-projects.vercel.app',
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Connect to Database
@@ -28,21 +37,21 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const contentBlockRoutes = require('./routes/contentBlockRoutes');
 
 // Mount routers
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/public', publicRoutes);
-app.use('/api/v1/products', productRoutes);
-app.use('/api/v1/cart', cartRoutes);
-app.use('/api/v1/wishlist', wishlistRoutes);
-app.use('/api/v1/addresses', addressRoutes);
-app.use('/api/v1/orders', orderRoutes);
-app.use('/api/v1/upload', uploadRoutes);
-app.use('/api/v1/admin', adminRoutes);
-app.use('/api/v1/categories', categoryRoutes);
-app.use('/api/v1/content-blocks', contentBlockRoutes);
+app.use('/api/auth', auth);
+app.use('/api/public', publicRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/addresses', addressRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/upload', uploadRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/content-blocks', contentBlockRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('FCmenswear API is running');
+  res.send('FCmenswear API running');
 });
 
 const PORT = process.env.PORT || 5000;

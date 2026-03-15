@@ -24,7 +24,7 @@ const AdminContentBlocks = () => {
 
   const fetchBlocks = async () => {
     try {
-      const res = await api.get('/content-blocks');
+      const res = await api.get('/api/content-blocks');
       setBlocks(res.data.data);
     } catch (err) {
       setError('Failed to fetch content blocks');
@@ -56,9 +56,9 @@ const AdminContentBlocks = () => {
 
     try {
       if (currentBlock._id) {
-        await api.put(`/admin/content-blocks/${currentBlock._id}`, currentBlock);
+        await api.put(`/api/admin/content-blocks/${currentBlock._id}`, currentBlock);
       } else {
-        await api.post('/admin/content-blocks', currentBlock);
+        await api.post('/api/admin/content-blocks', currentBlock);
       }
 
       fetchBlocks();
@@ -74,7 +74,7 @@ const AdminContentBlocks = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this content block?')) return;
     try {
-      await api.delete(`/admin/content-blocks/${id}`);
+      await api.delete(`/api/admin/content-blocks/${id}`);
       fetchBlocks();
     } catch (err) {
       setError('Failed to delete content block');

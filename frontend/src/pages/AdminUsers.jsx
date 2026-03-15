@@ -12,7 +12,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await api.get('/admin/users');
+      const res = await api.get('/api/admin/users');
       setUsers(res.data.data);
     } catch (error) {
       console.error('Error fetching users', error);
@@ -24,7 +24,7 @@ const AdminUsers = () => {
   const handlePromote = async (id) => {
     if (!window.confirm('Promote this user to Admin?')) return;
     try {
-      await api.put(`/admin/users/${id}/promote`);
+      await api.put(`/api/admin/users/${id}/promote`);
       alert('User promoted to admin.');
       fetchUsers();
     } catch (error) {
@@ -35,7 +35,7 @@ const AdminUsers = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     try {
-      await api.delete(`/admin/users/${id}`);
+      await api.delete(`/api/admin/users/${id}`);
       alert('User deleted successfully.');
       fetchUsers();
     } catch (error) {

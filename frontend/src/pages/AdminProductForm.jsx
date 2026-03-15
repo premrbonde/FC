@@ -20,7 +20,7 @@ const AdminProductForm = () => {
     if (isEdit) {
       const fetchProduct = async () => {
         try {
-          const res = await api.get(`/products/${id}`);
+          const res = await api.get(`/api/products/${id}`);
           const p = res.data.data;
           setFormData({
             ...p,
@@ -58,7 +58,7 @@ const AdminProductForm = () => {
         const uploadData = new FormData();
         imageFiles.forEach(file => uploadData.append('images', file));
 
-        const uploadRes = await api.post('/upload', uploadData, {
+        const uploadRes = await api.post('/api/upload', uploadData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
 
@@ -81,10 +81,10 @@ const AdminProductForm = () => {
       };
 
       if (isEdit) {
-        await api.put(`/admin/products/${id}`, productPayload);
+        await api.put(`/api/admin/products/${id}`, productPayload);
         alert('Product updated successfully!');
       } else {
-        await api.post('/admin/products', productPayload);
+        await api.post('/api/admin/products', productPayload);
         alert('Product created successfully!');
       }
       navigate('/admin/products');

@@ -30,7 +30,7 @@ const Address = () => {
 
   const fetchAddresses = async () => {
     try {
-      const res = await api.get('/addresses');
+      const res = await api.get('/api/addresses');
       setAddresses(res.data.data);
       if (res.data.data.length === 0) setShowForm(true);
     } catch (error) {
@@ -49,9 +49,9 @@ const Address = () => {
     e.preventDefault();
     try {
       if (formData._id) {
-        await api.put(`/addresses/${formData._id}`, formData);
+        await api.put(`/api/addresses/${formData._id}`, formData);
       } else {
-        await api.post('/addresses', formData);
+        await api.post('/api/addresses', formData);
       }
       setShowForm(false);
       fetchAddresses();

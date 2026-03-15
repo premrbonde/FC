@@ -61,7 +61,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 Create a `.env` file in the **frontend** directory:
 
 ```env
-VITE_API_URL=http://localhost:5000/api/v1
+VITE_API_URL=http://localhost:5000
 VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 ```
 

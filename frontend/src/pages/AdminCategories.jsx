@@ -19,7 +19,7 @@ const AdminCategories = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await api.get('/categories');
+      const res = await api.get('/api/categories');
       setCategories(res.data.data);
     } catch (err) {
       setError('Failed to fetch categories');
@@ -55,7 +55,7 @@ const AdminCategories = () => {
       if (imageFile) {
         const uploadData = new FormData();
         uploadData.append('images', imageFile);
-        const uploadRes = await api.post('/upload', uploadData, {
+        const uploadRes = await api.post('/api/upload', uploadData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         imageUrl = uploadRes.data.data[0];
@@ -73,9 +73,9 @@ const AdminCategories = () => {
       }
 
       if (currentCategory._id) {
-        await api.put(`/admin/categories/${currentCategory._id}`, payload);
+        await api.put(`/api/admin/categories/${currentCategory._id}`, payload);
       } else {
-        await api.post('/admin/categories', payload);
+        await api.post('/api/admin/categories', payload);
       }
 
       fetchCategories();
@@ -91,7 +91,7 @@ const AdminCategories = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     try {
-      await api.delete(`/categories/${id}`);
+      await api.delete(`/api/categories/${id}`);
       fetchCategories();
     } catch (err) {
       setError('Failed to delete category');
