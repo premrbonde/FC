@@ -8,17 +8,17 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: [
-      'http://localhost:5173',
-      'https://fc-menswear.vercel.app',
-      'https://fc-menswear-ncx63leq0-prembondes-projects.vercel.app',
-      "https://fc-dusky-omega.vercel.app"
-    ],
-    credentials: true,
-  })
-);
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://fc-dusky-omega.vercel.app",
+// ];
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   })
+// );
+app.use(cors());
 app.use(express.json());
 
 // Connect to Database
